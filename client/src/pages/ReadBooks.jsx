@@ -10,7 +10,7 @@ export const ReadBooks = () => {
   const [data] = useOutletContext();
   const dispatch = useDispatch();
 
-  const { trackedBooks, loading, readBooks } = data;
+  const { loading, readBooks } = data;
 
   // function to create a new Book
   const openNewBookSideBar = () => {

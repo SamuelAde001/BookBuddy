@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -13,8 +13,6 @@ export const Login = () => {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
   useEffect(() => {
     if (user) {
@@ -34,39 +32,56 @@ export const Login = () => {
   };
 
   const handleSubmit = async () => {
-    setEmail(emailRef.current.value);
-    setPassword(passwordRef.current.value);
-
-    if (!validateEmail() || !validatePassword()) {
-      // Show an error message or handle invalid input
-      console.error("Invalid email or password format");
+    if (!validateEmail()) {
+      console.error("Invalid email format");
+      message.error("Invalid email format");
+      return;
+    }
+    if (!validatePassword()) {
+      console.error("Invalid password format");
+      message.error(
+        "Password should be strong (at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character) "
+      );
       return;
     }
 
     setLoading(true);
     try {
-      await axios
-        .post(`${baseUrl}/loginuser`, { email, password })
-        .then((res) => {
-          const json = res.data;
-          if (json) {
-            // save the user to local storage
-            localStorage.setItem("user", JSON.stringify(json));
+      const response = await axios.post(`${baseUrl}/loginuser`, {
+        email,
+        password,
+      });
 
-            // update the auth context
-            dispatch({ type: "LOGIN", payload: json.token });
+      const json = response.data;
 
-            setLoading(false);
+      // Check the status code and show appropriate message
+      if (response.status >= 200 && response.status < 300) {
+        message.success(" successful!");
+      } else if (response.status >= 400 && response.status < 500) {
+        message.error("Email or Passowrd invalid");
+      } else if (response.status >= 500 && response.status < 600) {
+        message.error("Server error. Please try again later.");
+      }
 
-            navigate("/apphome");
-          }
-        });
+      // successful
+      if (json) {
+        // save the user to local storage
+        localStorage.setItem("user", JSON.stringify(json));
+
+        // update the auth context
+        dispatch({ type: "LOGIN", payload: json.token });
+
+        setLoading(false);
+
+        navigate("/apphome");
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   };
 
+  console.log(password);
   return (
     <>
       <h1>Login to BookBuddy</h1>
@@ -78,12 +93,6 @@ export const Login = () => {
             required: true,
             message: "Please input a valid email address!",
           },
-          {
-            validator: (_, value) =>
-              validateEmail()
-                ? Promise.resolve()
-                : Promise.reject("Invalid email format"),
-          },
         ]}
       >
         <Input
@@ -91,7 +100,6 @@ export const Login = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          ref={emailRef}
         />
       </Form.Item>
       <Form.Item
@@ -102,14 +110,6 @@ export const Login = () => {
             required: true,
             message: "Please input a strong password!",
           },
-          {
-            validator: (_, value) =>
-              validatePassword()
-                ? Promise.resolve()
-                : Promise.reject(
-                    "Password should be strong (at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character)"
-                  ),
-          },
         ]}
       >
         <Input.Password
@@ -117,7 +117,6 @@ export const Login = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          ref={passwordRef}
         />
       </Form.Item>
       <Button

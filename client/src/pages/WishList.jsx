@@ -8,23 +8,27 @@ import { CreateNewWishedBookSider } from "../components/CreateNewWishedBookSider
 import { FaBook } from "react-icons/fa6";
 
 export const WishList = () => {
+  // Get theme token
   const { token } = theme.useToken();
+
+  // Access data from the context API provided by react-router
   const [data] = useOutletContext();
   const dispatch = useDispatch();
-  const { trackedBooks, loading, readBooks, wishedBooks } = data;
+  const { loading, wishedBooks } = data;
 
-  // function to open sider for new wished books
+  // Function to open the sider for creating new wished books
   const openNewWishedBookSider = () => {
     dispatch(toggleWishedBookSider());
   };
-  // function to handle book Modal
+
+  // Function to handle the book modal
   const showModal = (item) => {
     dispatch(toggleModal(item));
   };
 
   return (
     <div className="">
-      {/*  read books list */}
+      {/* Wishlist section */}
       <section
         style={{
           backgroundColor: token.colorBgContainer,
@@ -51,10 +55,13 @@ export const WishList = () => {
             </Button>
           </div>
         )}
+
+        {/* Display wished books */}
         <div className="flex gap-10 items-center my-10 justify-start px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !wishedBooks || wishedBooks.length === 0 ? (
+            // Display message when no wished books
             <div className="w-full flex-col gap-5 space-y-5 items-center justify-center">
               <h2 style={{ color: token.colorText }} className="text-center">
                 You can add a book you wish to read in the future
@@ -72,6 +79,7 @@ export const WishList = () => {
               </div>
             </div>
           ) : (
+            // Display each wished book as a Card
             wishedBooks.map((item) => {
               return (
                 <Card
@@ -95,6 +103,8 @@ export const WishList = () => {
           )}
         </div>
       </section>
+
+      {/* Sider for creating new wished books */}
       <CreateNewWishedBookSider />
     </div>
   );

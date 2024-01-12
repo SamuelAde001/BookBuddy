@@ -102,7 +102,7 @@ export const AppHome = () => {
           {trackedBooks &&
             trackedBooks.length > 0 &&
             trackedBooks.length > 4 && (
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col mx-5 gap-10">
                 <Button type="primary">
                   <Link to="/apphome/currentreads">All Current reads</Link>
                 </Button>

@@ -6,25 +6,27 @@ import { useDispatch } from "react-redux";
 import { toggleModal } from "../features/BookDetailsModalSlice";
 
 export const TrackedBooks = () => {
+  // Get theme token
   const { token } = theme.useToken();
+
+  // Access data from the context API provided by react-router
   const [data] = useOutletContext();
   const dispatch = useDispatch();
-
   const { trackedBooks, loading } = data;
 
-  // function to create a new Book
+  // Function to open the sidebar for creating a new book
   const openNewBookSideBar = () => {
     dispatch(toggleSideBar());
   };
 
-  // function to handle book Modal
+  // Function to handle the book modal
   const showModal = (item) => {
     dispatch(toggleModal(item));
   };
 
   return (
     <div className="">
-      {/*  read books list */}
+      {/* Tracked books section */}
       <section
         style={{
           backgroundColor: token.colorBgContainer,
@@ -32,21 +34,23 @@ export const TrackedBooks = () => {
         className="w-full  py-5 rounded-lg"
       >
         <h2 style={{ color: token.colorTextBase }} className="text-center">
-          All Currently reading Books
+          All Currently Reading Books
         </h2>
 
         <div className="flex gap-10 items-center my-10 justify-start px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !trackedBooks || trackedBooks.length === 0 ? (
+            // Display message when no tracked books
             <div className="w-full  flex justify-center">
               <Button type="primary" className="" onClick={openNewBookSideBar}>
                 Create a new Book to track
               </Button>
             </div>
           ) : (
+            // Display each tracked book as a Card with progress bar
             trackedBooks.map((item) => {
-              // find out how many percent of the sittings is done
+              // Calculate the percentage of completed sittings
               const doneSittings = item.sittings.filter(
                 (item) => item.isComplete
               ).length;
@@ -54,6 +58,7 @@ export const TrackedBooks = () => {
               const percentage = Math.ceil(
                 (doneSittings / totalSittings) * 100
               );
+
               return (
                 <Card
                   key={item._id}
@@ -70,6 +75,7 @@ export const TrackedBooks = () => {
                     {item.bookName}
                   </h1>
                   <span>{item.author}</span>
+                  {/* Progress bar showing completion percentage */}
                   <Progress
                     trailColor={token.colorTextBase}
                     strokeColor={token.colorPrimary}
@@ -77,7 +83,7 @@ export const TrackedBooks = () => {
                     showInfo={true}
                     size={"small"}
                     percent={percentage}
-                    format={(percent) => `${percent}`}
+                    format={(percent) => `${percent}%`}
                   />
                 </Card>
               );

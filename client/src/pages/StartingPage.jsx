@@ -107,6 +107,7 @@ export const StartingPage = () => {
     {
       key: "Features",
       label: `Features`,
+      mode: "vertical",
       children: [
         {
           key: "feature1",
@@ -191,6 +192,10 @@ export const StartingPage = () => {
     {
       key: "login",
       onClick: toggleDrawer,
+      style: {
+        backgroundColor: token.colorPrimary,
+        color: "#e6e6e6",
+      },
       label: <Link to="/login"> Login</Link>,
     },
   ];
@@ -204,7 +209,7 @@ export const StartingPage = () => {
         <img
           src="https://i.ibb.co/VVB9tq1/bookbuddy-high-resolution-logo-transparent.png"
           alt=""
-          className="h-[100px]"
+          className="h-[50px]"
         />
         <Menu
           mode="horizontal"
@@ -229,7 +234,7 @@ export const StartingPage = () => {
         </div>
         <Menu
           theme="light"
-          mode="vertical"
+          mode="inline"
           defaultSelectedKeys={["home"]}
           items={minimenuItems}
         />
@@ -253,10 +258,10 @@ export const StartingPage = () => {
             Embrace the joy of organized, goal-oriented reading with our
             feature-packed book tracking app!
           </p>
-          <div className="flex justify-center flex-col gap-5">
-            <Button type="primary">
-              <Link to="/signup"> Signup Now</Link>
-            </Button>
+          <div className="flex justify-center items-center flex-col gap-5">
+            <Link to="/signup">
+              <Button type="primary">Signup Now</Button>
+            </Link>
             <p style={{ color: token.colorText }}>
               Already have an account? <Link to="/login">Log in</Link>
             </p>

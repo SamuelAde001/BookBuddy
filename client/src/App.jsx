@@ -54,6 +54,7 @@ const light = {
     },
   },
 };
+
 export const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const darkModeTrigger = useSelector((state) => {
@@ -71,6 +72,7 @@ export const App = () => {
   const location = useLocation();
 
   return (
+    // ant design dark themes
     <ConfigProvider theme={darkMode ? light : dark}>
       <Routes>
         <Route path="/" element={<StartingPage />} />

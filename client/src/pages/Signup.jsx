@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -15,11 +15,6 @@ export const Signup = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const firstNameRef = useRef(null);
-  const surnameRef = useRef(null);
-  const middleNameRef = useRef(null);
 
   const validateEmail = () => {
     return validator.isEmail(email);
@@ -33,44 +28,53 @@ export const Signup = () => {
   };
 
   const handleSignup = async () => {
-    setEmail(emailRef.current.value);
-    setPassword(passwordRef.current.value);
-    setFirstName(firstNameRef.current.value);
-    setMiddleName(middleNameRef.current.value);
-    setSurname(surnameRef.current.value);
-
-    if (!validateEmail() || !validatePassword()) {
-      // Show an error message or handle invalid input
-      console.error("Invalid email or password format");
+    // check email and password
+    if (!validateEmail()) {
+      console.error("Invalid email format");
+      message.error("Invalid email format");
+      return;
+    }
+    if (!validatePassword()) {
+      console.error("Invalid password format");
+      message.error(
+        "Password should be strong (at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character) "
+      );
       return;
     }
 
     setLoading(true);
     try {
-      await axios
-        .post(`${baseUrl}/registeruser`, {
-          email,
-          password,
-          firstName,
-          middleName,
-          surname,
-        })
-        .then((res) => {
-          const json = res.data;
-          console.log(json);
-          if (json) {
-            // save the user to local storage
-            localStorage.setItem("user", JSON.stringify(json));
+      const response = await axios.post(`${baseUrl}/registeruser`, {
+        email,
+        password,
+        firstName,
+        middleName,
+        surname,
+      });
 
-            // update the auth context
-            dispatch({ type: "LOGIN", payload: json.token });
+      const json = response.data;
 
-            setLoading(false);
+      // Check the status code and show appropriate message
+      if (response.status >= 200 && response.status < 300) {
+        message.success(" successful!");
+      } else if (response.status >= 400 && response.status < 500) {
+        message.error("Email or Passowrd invalid");
+      } else if (response.status >= 500 && response.status < 600) {
+        message.error("Server error. Please try again later.");
+      }
 
-            console.log(json.token);
-            navigate("/apphome");
-          }
-        });
+      // successful
+      if (json) {
+        // save the user to local storage
+        localStorage.setItem("user", JSON.stringify(json));
+
+        // update the auth context
+        dispatch({ type: "LOGIN", payload: json.token });
+
+        setLoading(false);
+
+        navigate("/apphome");
+      }
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -96,7 +100,6 @@ export const Signup = () => {
           onChange={(e) => {
             setFirstName(e.target.value);
           }}
-          ref={firstNameRef}
         />
       </Form.Item>
       <Form.Item
@@ -114,7 +117,6 @@ export const Signup = () => {
           onChange={(e) => {
             setMiddleName(e.target.value);
           }}
-          ref={middleNameRef}
         />
       </Form.Item>
       <Form.Item
@@ -132,7 +134,6 @@ export const Signup = () => {
           onChange={(e) => {
             setSurname(e.target.value);
           }}
-          ref={surnameRef}
         />
       </Form.Item>
       <Form.Item
@@ -143,12 +144,6 @@ export const Signup = () => {
             required: true,
             message: "Please input a valid email address!",
           },
-          {
-            validator: (_, value) =>
-              validateEmail()
-                ? Promise.resolve()
-                : Promise.reject("Invalid email format"),
-          },
         ]}
       >
         <Input
@@ -156,7 +151,6 @@ export const Signup = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          ref={emailRef}
         />
       </Form.Item>
       <Form.Item
@@ -167,14 +161,6 @@ export const Signup = () => {
             required: true,
             message: "Please input a strong password!",
           },
-          {
-            validator: (_, value) =>
-              validatePassword()
-                ? Promise.resolve()
-                : Promise.reject(
-                    "Password should be strong (at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character)"
-                  ),
-          },
         ]}
       >
         <Input.Password
@@ -182,7 +168,6 @@ export const Signup = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          ref={passwordRef}
         />
       </Form.Item>
 

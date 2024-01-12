@@ -7,10 +7,6 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-const useThemeMode = () => {
-  return;
-};
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>

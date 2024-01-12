@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { BookDetailsModal } from "../components/BookDetailsModal";
 import { baseUrl } from "../../utils/helper";
 import { CiLogout } from "react-icons/ci";
+import { IoMdMenu } from "react-icons/io";
 
 export const AppLayout = () => {
   const { token } = theme.useToken();
@@ -116,6 +117,7 @@ export const AppLayout = () => {
     }
   }, [user, triggerReload]);
 
+  // data to be sent to the children
   const data = {
     books,
     trackedBooks,
@@ -137,7 +139,6 @@ export const AppLayout = () => {
           theme="light"
           trigger={null}
           onBreakpoint={(broken) => {
-            // Set collapsed state based on the breakpoint
             setcollapsed(broken);
           }}
         >
@@ -171,12 +172,14 @@ export const AppLayout = () => {
           <Outlet context={[data]} />
         </Content>
         <Button
-          onClick={() => setcollapsed((prev) => !prev)}
-          className="fixed z-30 bottom-0 lg:hidden"
+          onClick={() => {
+            setcollapsed((prev) => !prev);
+          }}
+          className="fixed z-30 left-3 bottom-3 lg:hidden"
           type="primary"
-        >
-          Collapse sidebar
-        </Button>
+          icon={<IoMdMenu />}
+        />
+
         <CreateNewBookSideBar />
         <BookDetailsModal />
       </Layout>
