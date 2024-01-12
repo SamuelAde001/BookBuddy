@@ -78,6 +78,7 @@ export const BookDetailsModal = () => {
     // submit the latest uodate of the sittings to the backend
 
     // if bookdeatils has deadline, it is a tracked book else it is a wished book
+
     if (bookDetails.deadline) {
       try {
         // If the percentage is 100, update the isRead value

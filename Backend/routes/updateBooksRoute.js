@@ -6,14 +6,10 @@ const router = express.Router();
 // update Book details
 router.put("/:id", async (req, res) => {
   const bookId = req.params.id;
-  const { sittingsNumber, bookPages, imageLink } = req.body;
+  const { sittings, sittingsNumber, bookPages } = req.body;
 
   // Calculate the number of pages per sitting based on the total pages and number of sittings
   const pagesPerSitting = Math.ceil(bookPages / sittingsNumber);
-
-  // Assign a default image link if imageLink is null or undefined
-  const defaultImageLink = "https://fakeimg.pl/300x500?text=Book+Cover";
-  const finalImageLink = imageLink || defaultImageLink;
 
   const sittingsArray = Array.from({ length: sittingsNumber }, () => ({
     pagePerSitting: pagesPerSitting,
@@ -26,7 +22,7 @@ router.put("/:id", async (req, res) => {
     // Find the book by ID and update its details
     const updatedBook = await books.findOneAndUpdate(
       { _id: bookId },
-      { ...details, imageLink: finalImageLink, sittings: sittingsArray },
+      { ...details, sittings: sittings ? sittings : sittingsArray },
       { new: true }
     );
 

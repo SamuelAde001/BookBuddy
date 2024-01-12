@@ -58,12 +58,11 @@ export const CreateNewWishedBookSider = () => {
       if (response.status >= 200 && response.status < 300) {
         message.success("Wished book created successfully!");
         form.resetFields();
-        onClose();
-        dispatch(triggerReload());
       } else {
         message.error("Failed to create wished book. Please try again later.");
       }
 
+      onClose();
       // to trigger reload of page
       dispatch(triggerReload());
     } catch (error) {
@@ -115,21 +114,12 @@ export const CreateNewWishedBookSider = () => {
         <Row>
           <Col>
             <Form.Item name="imageLink" label="Image link">
-              <Popover
-                content={
-                  <p>
-                    You can copy the book image link from any
-                    <br /> website that has the image of the book
-                  </p>
-                }
-              >
-                <Input
-                  style={{ width: "100%" }}
-                  addonBefore="http://"
-                  addonAfter=".com"
-                  placeholder="Please enter link to image of book cover"
-                />
-              </Popover>
+              <Input
+                style={{ width: "100%" }}
+                addonBefore="http://"
+                addonAfter=".com"
+                placeholder="Please enter link to image of book cover"
+              />
             </Form.Item>
           </Col>
         </Row>

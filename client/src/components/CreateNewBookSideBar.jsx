@@ -69,9 +69,6 @@ export const CreateNewBookSideBar = () => {
       // Check the status code and show appropriate message
       if (response.status >= 200 && response.status < 300) {
         message.success("Book created successfully!");
-        form.resetFields();
-        onClose();
-        dispatch(triggerReload());
       } else if (response.status >= 400 && response.status < 500) {
         message.error("Input error. Please check your data.");
       } else if (response.status >= 500 && response.status < 600) {
@@ -134,21 +131,12 @@ export const CreateNewBookSideBar = () => {
         <Row>
           <Col>
             <Form.Item name="imageLink" label="Image link">
-              <Popover
-                content={
-                  <p>
-                    You can copy the book image link from any
-                    <br /> website that has the image of the book
-                  </p>
-                }
-              >
-                <Input
-                  style={{ width: "100%" }}
-                  addonBefore="http://"
-                  addonAfter=".com"
-                  placeholder="Please enter link to image of book cover"
-                />
-              </Popover>
+              <Input
+                style={{ width: "100%" }}
+                addonBefore="http://"
+                addonAfter=".com"
+                placeholder="Please enter link to image of book cover"
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -224,20 +212,7 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <Popover
-                content={
-                  <p>
-                    Divide the book pages into how many sitting
-                    <br /> you can achieve to finish
-                    <br />
-                    <bold className="text-red-400">
-                      Read about sittings bellow
-                    </bold>
-                  </p>
-                }
-              >
-                <InputNumber min={1} />
-              </Popover>
+              <InputNumber min={1} />
             </Form.Item>
           </Col>
         </Row>

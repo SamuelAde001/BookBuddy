@@ -6,6 +6,7 @@ const router = express.Router();
 // update Book details
 router.put("/:id", async (req, res) => {
   const bookId = req.params.id;
+
   try {
     // Find the book by ID and update its details
     const updatedBook = await books.findOneAndUpdate(
