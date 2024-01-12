@@ -24,8 +24,10 @@ app.use(cors());
 app.use(morgan("tiny"));
 
 // routes
-app.get("/", (req, res) => {
-  res.send("on the root");
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.use("/loginuser", loginUserRoute);
@@ -42,6 +44,7 @@ app.use("/deletewishedbooks", deleteWishedBooksRoute);
 app.use("/updatewishedbooks", updateWishedBooksRoute);
 app.use("/getuser", getUserRoute);
 app.use(routeNotFound);
+
 // Start application/Server
 const server = async () => {
   try {
