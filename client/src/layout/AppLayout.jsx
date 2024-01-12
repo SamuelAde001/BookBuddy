@@ -175,10 +175,11 @@ export const AppLayout = () => {
           onClick={() => {
             setcollapsed((prev) => !prev);
           }}
-          className="fixed z-30 left-3 bottom-3 lg:hidden"
+          className="fixed z-30 p-6  grid place-content-center left-3 bottom-3 lg:hidden"
           type="primary"
-          icon={<IoMdMenu />}
-        />
+        >
+          <IoMdMenu />
+        </Button>
 
         <CreateNewBookSideBar />
         <BookDetailsModal />
