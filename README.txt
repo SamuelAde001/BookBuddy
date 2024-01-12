@@ -1,16 +1,16 @@
-# BookBuddy - a Book Tracker App
+#BookBuddy - a Book Tracker App
 
-## Overview
+##Overview
 BookBuddy is a user-friendly web app designed to enhance your reading experience. It allows you to effortlessly track your reading progress by setting goals based on pages or sittings, adapting to your schedule. You can organize books into "Currently Reading," "Read," and "Wishlist" categories, ensuring a well-managed virtual bookshelf. With secure user authentication, personalized reminders, and community engagement features, BookBuddy offers a seamless and enjoyable platform for book enthusiasts. Whether you're a seasoned reader or just starting, BookBuddy is your companion for tracking progress, discovering new reads, and connecting with a like-minded literary community.
 
-## Table of Contents
+##Table of Contents
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 
 
-## Features
+##Features
 
 - Feature 1: Help hit your reading Goals
 - Feature 2: Help divide your book into sittings and keep track of them
@@ -22,11 +22,11 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 
 
 
-## Getting Started
+##Getting Started
 
 - To get startted with the Web app just go to www.(hostedLink)
 
-## Usage
+##Usage
 
 - Step 1: You would see the starting page, feel free to go through to see the features.
 - Step 2: You can then signup if you don't have an account, if you do you can Login.
@@ -36,7 +36,7 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 -Step 6: You can add books you aim to read in future in the wishlist page
 -Step 6: Also you can edit you book details in case you made a mistake
 
-## Technologies Used
+##Technologies Used
 
 - React
 - Express.js
@@ -50,7 +50,7 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 
 
 
-## Acknowledgments
+##Acknowledgments
 
 
 
