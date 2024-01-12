@@ -7,7 +7,6 @@ import {
 } from "../features/createNewBookSlice";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../features/BookDetailsModalSlice";
-import { yellow } from "@mui/material/colors";
 import { CreateNewWishedBookSider } from "../components/CreateNewWishedBookSider";
 import { FaBook } from "react-icons/fa6";
 
