@@ -10,7 +10,7 @@ import { WishList } from "./pages/WishList";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { LoginLayout } from "./layout/LoginLayout";
 import { AppLayout } from "./layout/AppLayout";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 import { ConfigProvider, theme } from "antd";
 const { darkAlgorithm, compactAlgorithm, defaultAlgorithm } = theme;
