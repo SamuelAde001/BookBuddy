@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Layout, Menu, Drawer, Button, theme } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"; // Import the ScrollLink and scroll functions
 import { LightandDarkModeTrigger } from "../components/LightandDarkModeTrigger";

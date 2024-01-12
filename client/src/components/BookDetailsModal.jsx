@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Checkbox,
-  Col,
-  Divider,
-  Modal,
-  Row,
-  message,
-  theme,
-} from "antd";
+import { Button, Checkbox, Divider, Modal, message, theme } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   toggleModal,

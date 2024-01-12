@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import React from "react";
+import { useOutletContext } from "react-router-dom";
 import { Button, Card, Progress, Spin, theme } from "antd";
 import { toggleSideBar } from "../features/createNewBookSlice";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../features/BookDetailsModalSlice";
-import { yellow } from "@mui/material/colors";
 
 export const TrackedBooks = () => {
   const { token } = theme.useToken();
   const [data] = useOutletContext();
   const dispatch = useDispatch();
 
-  const { trackedBooks, loading, readBooks } = data;
+  const { trackedBooks, loading } = data;
 
   // function to create a new Book
   const openNewBookSideBar = () => {

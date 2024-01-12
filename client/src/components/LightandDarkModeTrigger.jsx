@@ -1,6 +1,6 @@
 import { Switch } from "antd";
 import React, { useState, useEffect } from "react";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../features/darkModeSlice";
 

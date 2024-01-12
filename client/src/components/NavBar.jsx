@@ -1,6 +1,5 @@
 import { Button, Menu, theme } from "antd";
-import React, { useEffect, useState } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleSideBar } from "../features/createNewBookSlice";
