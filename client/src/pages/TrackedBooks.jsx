@@ -37,7 +37,7 @@ export const TrackedBooks = () => {
           All Currently Reading Books
         </h2>
 
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start px-10 flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !trackedBooks || trackedBooks.length === 0 ? (

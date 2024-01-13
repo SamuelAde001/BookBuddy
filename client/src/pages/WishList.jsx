@@ -57,7 +57,7 @@ export const WishList = () => {
         )}
 
         {/* Display wished books */}
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start px-10 flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !wishedBooks || wishedBooks.length === 0 ? (

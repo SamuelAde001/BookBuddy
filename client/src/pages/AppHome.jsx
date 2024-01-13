@@ -50,7 +50,7 @@ export const AppHome = () => {
           Currently reading Books
         </h2>
 
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !trackedBooks || trackedBooks.length === 0 ? (
@@ -122,7 +122,7 @@ export const AppHome = () => {
           Read Books
         </h2>
 
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start  flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10  flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !readBooks || readBooks.length === 0 ? (
@@ -209,7 +209,7 @@ export const AppHome = () => {
             </Button>
           </div>
         )}
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start  flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10  flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !wishedBooks || wishedBooks.length === 0 ? (
