@@ -138,7 +138,7 @@ export const CreateNewBookSideBar = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <p className="text-xs text-yellow-500">
+            <p className="text-xs">
               You can copy a link to the book image anywhere online and paste
               that link here to have your book cover
             </p>
@@ -207,9 +207,7 @@ export const CreateNewBookSideBar = () => {
           <Popover
             placement="top"
             content={
-              <span className="text-yellow-500">
-                Read the text down bellow to understand sittings
-              </span>
+              <span>Read the text down bellow to understand sittings</span>
             }
           >
             <Col span={8}>

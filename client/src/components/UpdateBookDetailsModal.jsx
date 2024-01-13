@@ -143,7 +143,7 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <p className="text-xs text-yellow-500">
+              <p className="text-xs">
                 You can copy a link to the book image anywhere online and paste
                 that link here to have your book cover
               </p>
