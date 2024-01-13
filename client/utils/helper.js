@@ -1,4 +1,4 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://bookbuddy-qwvf.onrender.com"
+    ? "https://rich-tan-seagull-cape.cyclic.app/"
     : "http://localhost:3000";
