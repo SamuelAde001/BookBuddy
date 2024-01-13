@@ -18,16 +18,16 @@ export const NavBar = ({ data }) => {
     dispatch(toggleSideBar());
   };
 
+  // Ant design break points
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
+
   // trigger menu open state
   const triggerMenuState = () => {
     if (!screens.lg && !screens.xl) {
       dispatch(triggerMenu());
     }
   };
-
-  // Ant design break points
-  const { useBreakpoint } = Grid;
-  const screens = useBreakpoint();
 
   // menu items
   const menuItems = [

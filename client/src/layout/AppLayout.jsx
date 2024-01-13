@@ -1,4 +1,4 @@
-import { Button, Layout, theme } from "antd";
+import { Button, Grid, Layout, theme } from "antd";
 import React, { useState, useEffect } from "react";
 import { useLogout } from "../hooks/useLogout";
 import { Outlet } from "react-router-dom";
@@ -13,7 +13,7 @@ import { BookDetailsModal } from "../components/BookDetailsModal";
 import { baseUrl } from "../../utils/helper";
 import { CiLogout } from "react-icons/ci";
 import { IoMdMenu } from "react-icons/io";
-import { triggerMenu } from "../features/createNewBookSlice";
+import { setMenuState, triggerMenu } from "../features/createNewBookSlice";
 
 export const AppLayout = () => {
   const { token } = theme.useToken();
@@ -36,6 +36,11 @@ export const AppLayout = () => {
     (state) => state.createBookReducer.triggerMenu
   );
 
+  // Ant design break points
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
+
+  // greetings
   const determineGreeting = () => {
     const currentHour = new Date().getHours();
 
@@ -149,7 +154,11 @@ export const AppLayout = () => {
           trigger={null}
           onBreakpoint={() => {
             if (componentMounted) {
-              dispatch(triggerMenu());
+              if (!screens.lg && !screens.xl) {
+                dispatch(setMenuState(true));
+              } else {
+                dispatch(setMenuState(false));
+              }
             }
           }}
         >

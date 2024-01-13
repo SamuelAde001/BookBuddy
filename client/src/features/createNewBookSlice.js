@@ -27,9 +27,14 @@ const createBookSlice = createSlice({
     toggleWishedBookSider: (state, action) => {
       state.toggleWishedSider = !state.toggleWishedSider;
     },
+
     // action to open or close the sideBar to create a wished book
     triggerMenu: (state, action) => {
       state.triggerMenu = !state.triggerMenu;
+    },
+    // stiil on settting menu
+    setMenuState: (state, action) => {
+      state.triggerMenu = action.payload;
     },
   },
 });
@@ -39,6 +44,7 @@ export const {
   triggerReload,
   toggleWishedBookSider,
   triggerMenu,
+  setMenuState,
 } = createBookSlice.actions;
 
 export default createBookSlice.reducer;
