@@ -1,4 +1,4 @@
-import { Button, Menu, theme } from "antd";
+import { Button, Grid, Menu, theme } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -20,8 +20,14 @@ export const NavBar = ({ data }) => {
 
   // trigger menu open state
   const triggerMenuState = () => {
-    dispatch(triggerMenu());
+    if (!screens.lg && !screens.xl) {
+      dispatch(triggerMenu());
+    }
   };
+
+  // Ant design break points
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
 
   // menu items
   const menuItems = [
