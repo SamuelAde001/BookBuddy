@@ -8,11 +8,12 @@ import { CreateNewBookSideBar } from "../components/CreateNewBookSideBar";
 import { Content, Header } from "antd/es/layout/layout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BookDetailsModal } from "../components/BookDetailsModal";
 import { baseUrl } from "../../utils/helper";
 import { CiLogout } from "react-icons/ci";
 import { IoMdMenu } from "react-icons/io";
+import { triggerMenu } from "../features/createNewBookSlice";
 
 export const AppLayout = () => {
   const { token } = theme.useToken();
@@ -25,9 +26,13 @@ export const AppLayout = () => {
   const [wishedBooks, setWishedBooks] = useState(null);
   const [loading, setLoading] = useState(true);
   const [presentUser, setPresentUser] = useState(null);
+  const dispatch = useDispatch();
   const [greeting, setGreeting] = useState("");
   const triggerReload = useSelector(
     (state) => state.createBookReducer.triggerToggle
+  );
+  const menuOpenState = useSelector(
+    (state) => state.createBookReducer.triggerMenu
   );
 
   const determineGreeting = () => {
@@ -134,7 +139,7 @@ export const AppLayout = () => {
           width={200}
           className=" h-screen z-20 shadow-2xl lg:shadow-none"
           breakpoint="lg"
-          collapsed={collapsed}
+          collapsed={menuOpenState}
           collapsedWidth={0}
           theme="light"
           trigger={null}
@@ -173,7 +178,7 @@ export const AppLayout = () => {
         </Content>
         <Button
           onClick={() => {
-            setcollapsed((prev) => !prev);
+            dispatch(triggerMenu());
           }}
           className="fixed z-30 p-6  grid place-content-center left-3 bottom-3 lg:hidden"
           type="primary"

@@ -2,7 +2,7 @@ import { Button, Menu, theme } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleSideBar } from "../features/createNewBookSlice";
+import { toggleSideBar, triggerMenu } from "../features/createNewBookSlice";
 import { FaBook, FaHome } from "react-icons/fa";
 import { FaBookOpenReader } from "react-icons/fa6";
 import { LuBookOpenCheck } from "react-icons/lu";
@@ -18,28 +18,45 @@ export const NavBar = ({ data }) => {
     dispatch(toggleSideBar());
   };
 
+  // trigger menu open state
+  const triggerMenuState = () => {
+    dispatch(triggerMenu());
+  };
+
   // menu items
   const menuItems = [
     {
       key: "Home",
       label: <Link to="/apphome">Home</Link>,
       icon: <FaHome />,
+      onClick: () => {
+        triggerMenuState();
+      },
     },
     {
       key: "trackedbooks",
       label: <Link to="/apphome/currentreads"> Current reads</Link>,
       icon: <FaBookOpenReader />,
+      onClick: () => {
+        triggerMenuState();
+      },
     },
 
     {
       key: "readbooks",
       label: <Link to="/apphome/readbooks"> Read Books</Link>,
       icon: <LuBookOpenCheck />,
+      onClick: () => {
+        triggerMenuState();
+      },
     },
     {
       key: "wishlist",
       label: <Link to="/apphome/wishlist">Wish List</Link>,
       icon: <GiNotebook />,
+      onClick: () => {
+        triggerMenuState();
+      },
     },
   ];
 
@@ -64,7 +81,10 @@ export const NavBar = ({ data }) => {
         block
         type="primary"
         className="my-10"
-        onClick={openNewBookSideBar}
+        onClick={() => {
+          openNewBookSideBar();
+          triggerMenuState();
+        }}
         icon={<FaBook />}
       >
         New Book
