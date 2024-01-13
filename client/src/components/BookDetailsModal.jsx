@@ -339,7 +339,7 @@ export const BookDetailsModal = () => {
                 Sittings:
               </span>
               <span>
-                Pages/sitting: {sittings && sittings[1].pagePerSitting}
+                Pages/sitting: {sittings && sittings[0].pagePerSitting}
               </span>
               <br />
               <br />

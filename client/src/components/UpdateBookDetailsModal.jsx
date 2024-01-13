@@ -9,6 +9,7 @@ import {
   Modal,
   Spin,
   message,
+  Popover,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -132,16 +133,20 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
               </Form.Item>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <Form.Item name="imageLink" label="Image link">
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item name="imageLink" label="Book cover Image link">
                 <Input
                   style={{ width: "100%" }}
-                  addonBefore="http://"
-                  addonAfter=".com"
                   placeholder="Please enter link to image of book cover"
                 />
               </Form.Item>
+            </Col>
+            <Col span={12}>
+              <p className="text-xs text-yellow-500">
+                You can copy a link to the book image anywhere online and paste
+                that link here to have your book cover
+              </p>
             </Col>
           </Row>
           <Row gutter={16}>

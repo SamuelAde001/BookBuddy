@@ -128,16 +128,20 @@ export const CreateNewBookSideBar = () => {
             </Form.Item>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Form.Item name="imageLink" label="Image link">
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item name="imageLink" label="Book cover Image link">
               <Input
                 style={{ width: "100%" }}
-                addonBefore="http://"
-                addonAfter=".com"
                 placeholder="Please enter link to image of book cover"
               />
             </Form.Item>
+          </Col>
+          <Col span={12}>
+            <p className="text-xs text-yellow-500">
+              You can copy a link to the book image anywhere online and paste
+              that link here to have your book cover
+            </p>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -200,21 +204,30 @@ export const CreateNewBookSideBar = () => {
               <DatePicker format="YYYY-MM-DD" />
             </Form.Item>
           </Col>
-          <Col span={8}>
-            <Form.Item
-              name="sittingsNumber"
-              label="Sittings"
-              rules={[
-                {
-                  required: true,
-                  message:
-                    "Please how many sittings you want to read the book with",
-                },
-              ]}
-            >
-              <InputNumber min={1} />
-            </Form.Item>
-          </Col>
+          <Popover
+            placement="top"
+            content={
+              <span className="text-yellow-500">
+                Read the text down bellow to understand sittings
+              </span>
+            }
+          >
+            <Col span={8}>
+              <Form.Item
+                name="sittingsNumber"
+                label="Sittings"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Please how many sittings you want to read the book with",
+                  },
+                ]}
+              >
+                <InputNumber min={1} />
+              </Form.Item>
+            </Col>
+          </Popover>
         </Row>
         <Row gutter={16}>
           <Col span={24}>
