@@ -50,7 +50,7 @@ export const AppHome = () => {
           Currently reading Books
         </h2>
 
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start px-10 flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !trackedBooks || trackedBooks.length === 0 ? (
@@ -74,17 +74,14 @@ export const AppHome = () => {
                   key={item._id}
                   hoverable
                   onClick={() => showModal(item)}
-                  className="shadow-md hover:shadow-2xl transform hover:scale-95 transition duration-300 ease-in-out"
+                  className="shadow-md hover:shadow-2xl transform hover:scale-95 w-[100px] lg:w-[170px] transition duration-300 ease-in-out"
                   size="small"
-                  style={{
-                    width: 170,
-                  }}
-                  cover={<img className="h-40" src={item.imageLink} />}
+                  cover={<img className="h-20 lg:h-40" src={item.imageLink} />}
                 >
-                  <h1 className="font-bold text-sm line-clamp-1">
+                  <h1 className="font-bold text-[10px] lg:text-sm line-clamp-1">
                     {item.bookName}
                   </h1>
-                  <span>{item.author}</span>
+                  <span className="text-[10px] lg:text-sm">{item.author}</span>
                   <Progress
                     trailColor={token.colorTextBase}
                     strokeColor={token.colorPrimary}
@@ -125,7 +122,7 @@ export const AppHome = () => {
           Read Books
         </h2>
 
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start px-10 flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start  flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !readBooks || readBooks.length === 0 ? (
@@ -151,17 +148,14 @@ export const AppHome = () => {
                   key={item._id}
                   hoverable
                   onClick={() => showModal(item)}
-                  className="shadow-md hover:shadow-2xl transform hover:scale-95 transition duration-300 ease-in-out"
+                  className="shadow-md hover:shadow-2xl transform hover:scale-95 w-[100px] lg:w-[170px] transition duration-300 ease-in-out"
                   size="small"
-                  style={{
-                    width: 170,
-                  }}
-                  cover={<img className="h-40" src={item.imageLink} />}
+                  cover={<img className="h-20 lg:h-40" src={item.imageLink} />}
                 >
-                  <h1 className="font-bold text-sm line-clamp-1">
+                  <h1 className="font-bold text-[10px] lg:text-sm line-clamp-1">
                     {item.bookName}
                   </h1>
-                  <span>{item.author}</span>
+                  <span className="text-[10px] lg:text-sm">{item.author}</span>
                   <Progress
                     trailColor={token.colorTextBase}
                     strokeColor={token.colorPrimary}
@@ -215,7 +209,7 @@ export const AppHome = () => {
             </Button>
           </div>
         )}
-        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start px-10 flex-wrap">
+        <div className="flex gap-10 items-center my-10 justify-center lg:justify-start  flex-wrap">
           {loading ? (
             <Spin size="large" />
           ) : !wishedBooks || wishedBooks.length === 0 ? (
@@ -242,17 +236,14 @@ export const AppHome = () => {
                   key={item._id}
                   hoverable
                   onClick={() => showModal(item)}
-                  className="shadow-md hover:shadow-2xl transform hover:scale-95 transition duration-300 ease-in-out"
+                  className="shadow-md hover:shadow-2xl transform hover:scale-95 w-[100px] lg:w-[170px] transition duration-300 ease-in-out"
                   size="small"
-                  style={{
-                    width: 170,
-                  }}
-                  cover={<img className="h-40" src={item.imageLink} />}
+                  cover={<img className="h-20 lg:h-40" src={item.imageLink} />}
                 >
-                  <h1 className="font-bold text-sm line-clamp-1">
+                  <h1 className="font-bold text-[10px] lg:text-sm line-clamp-1">
                     {item.bookName}
                   </h1>
-                  <span>{item.author}</span>
+                  <span className="text-[10px] lg:text-sm">{item.author}</span>
                 </Card>
               );
             })

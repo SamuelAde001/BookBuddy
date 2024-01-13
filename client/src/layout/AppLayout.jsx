@@ -144,7 +144,7 @@ export const AppLayout = () => {
           theme="light"
           trigger={null}
           onBreakpoint={(broken) => {
-            setcollapsed(broken);
+            dispatch(triggerMenu());
           }}
         >
           <NavBar data={data} />

@@ -86,17 +86,14 @@ export const WishList = () => {
                   key={item._id}
                   hoverable
                   onClick={() => showModal(item)}
-                  className="shadow-md hover:shadow-2xl transform hover:scale-95 transition duration-300 ease-in-out"
+                  className="shadow-md hover:shadow-2xl transform hover:scale-95 w-[100px] lg:w-[170px] transition duration-300 ease-in-out"
                   size="small"
-                  style={{
-                    width: 170,
-                  }}
-                  cover={<img className="h-40" src={item.imageLink} />}
+                  cover={<img className="h-20 lg:h-40" src={item.imageLink} />}
                 >
-                  <h1 className="font-bold text-sm line-clamp-1">
+                  <h1 className="font-bold text-[10px] lg:text-sm line-clamp-1">
                     {item.bookName}
                   </h1>
-                  <span>{item.author}</span>
+                  <span className="text-[10px] lg:text-sm">{item.author}</span>
                 </Card>
               );
             })
