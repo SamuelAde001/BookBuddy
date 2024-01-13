@@ -12,7 +12,8 @@ import { LoginLayout } from "./layout/LoginLayout";
 import { AppLayout } from "./layout/AppLayout";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
-import { ConfigProvider, theme } from "antd";
+import { AiOutlineLoading } from "react-icons/ai";
+import { ConfigProvider, Spin, theme } from "antd";
 const { darkAlgorithm, compactAlgorithm, defaultAlgorithm } = theme;
 
 // dark Mode styles
@@ -61,15 +62,28 @@ export const App = () => {
     return state.darkModeReducer.darkMode;
   });
 
+  const [loading, setLoading] = React.useState(true);
+
   useEffect(() => {
     // Check if there is a saved value in local storage
     const storedDarkMode = localStorage.getItem("darkMode");
+    const user = localStorage.getItem("user");
 
+    if (user) {
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
     // If a value is stored, use it
     setDarkMode(JSON.parse(storedDarkMode));
   }, [darkModeTrigger]); // Run this effect only once when the component mounts
 
   const location = useLocation();
+
+  // if the user is not true Loading would show
+  if (loading) {
+    return <Spin size="large" fullscreen />;
+  }
 
   return (
     // ant design dark themes

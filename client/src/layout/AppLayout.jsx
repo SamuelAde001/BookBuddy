@@ -27,6 +27,7 @@ export const AppLayout = () => {
   const [loading, setLoading] = useState(true);
   const [presentUser, setPresentUser] = useState(null);
   const dispatch = useDispatch();
+  const [componentMounted, setComponentMounted] = useState(false);
   const [greeting, setGreeting] = useState("");
   const triggerReload = useSelector(
     (state) => state.createBookReducer.triggerToggle
@@ -58,6 +59,9 @@ export const AppLayout = () => {
 
     // Set up an interval to update the greeting every minute
     const intervalId = setInterval(updateGreeting, 60000);
+
+    // to help set component mounted to true after useEffect
+    setComponentMounted(true);
 
     // Clean up the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -143,8 +147,10 @@ export const AppLayout = () => {
           collapsedWidth={0}
           theme="light"
           trigger={null}
-          onBreakpoint={(broken) => {
-            dispatch(triggerMenu());
+          onBreakpoint={() => {
+            if (componentMounted) {
+              dispatch(triggerMenu());
+            }
           }}
         >
           <NavBar data={data} />

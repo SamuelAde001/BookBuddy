@@ -14,12 +14,6 @@ export const Login = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/apphome");
-    }
-  }, []);
-
   const validateEmail = () => {
     return validator.isEmail(email);
   };
@@ -81,7 +75,6 @@ export const Login = () => {
     }
   };
 
-  console.log(password);
   return (
     <>
       <h1>Login to BookBuddy</h1>

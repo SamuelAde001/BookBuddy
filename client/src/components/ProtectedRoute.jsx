@@ -4,5 +4,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 export const ProtectedRoute = () => {
   const { user } = useAuthContext();
+
   return <>{user ? <Outlet /> : <Navigate to="/login" />}</>;
 };
