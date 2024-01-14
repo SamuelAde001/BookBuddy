@@ -21,9 +21,8 @@ export const Signup = () => {
   };
 
   const validatePassword = () => {
-    // Password should be at least 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character
-    const strongPasswordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    // Password should be at least 6 - 12 characters
+    const strongPasswordRegex = /^[a-zA-Z0-9_]{6,12}$/;
     return strongPasswordRegex.test(password);
   };
 
@@ -36,9 +35,7 @@ export const Signup = () => {
     }
     if (!validatePassword()) {
       console.error("Invalid password format");
-      message.error(
-        "Password should be strong (at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character) "
-      );
+      message.error("put a different password");
       return;
     }
 
