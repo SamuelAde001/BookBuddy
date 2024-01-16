@@ -17,7 +17,7 @@ const createToken = (_id, firstName, surname, middleName, email) => {
 // register user
 router.post(
   "/",
-  [check("email").isEmail(), check("password").isStrongPassword()],
+  [check("email").isEmail(), check("password").notEmpty()],
   (req, res) => {
     // handle user login
     const loginUser = async () => {

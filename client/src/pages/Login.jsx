@@ -19,8 +19,9 @@ export const Login = () => {
   };
 
   const validatePassword = () => {
-    // Password should be at least 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character
-    const strongPasswordRegex = /^[a-zA-Z0-9_]{6,12}$/;
+    // Password should be at least 6 characters and include at least one uppercase letter, one lowercase letter, one number, but not greater than 20 characters long
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}$/;
+
     return strongPasswordRegex.test(password);
   };
 
@@ -32,7 +33,7 @@ export const Login = () => {
     }
     if (!validatePassword()) {
       console.error("Invalid password format");
-      message.error("password is invalid");
+      message.error("invalid password");
       return;
     }
 
@@ -48,14 +49,10 @@ export const Login = () => {
       // Check the status code and show appropriate message
       if (response.status >= 200 && response.status < 300) {
         message.success(" successful!");
-      } else if (response.status >= 400 && response.status < 500) {
-        message.error("Email or Passowrd invalid");
-      } else if (response.status >= 500 && response.status < 600) {
-        message.error("Server error. Please try again later.");
       }
 
       // successful
-      if (json) {
+      if (response.status >= 200 && response.status < 300) {
         // save the user to local storage
         localStorage.setItem("user", JSON.stringify(json));
 
@@ -67,7 +64,16 @@ export const Login = () => {
         navigate("/apphome");
       }
     } catch (error) {
+      if (error.response.status >= 400 && error.response.status < 500) {
+        message.error("Email or Passoword invalid");
+        setLoading(false);
+      } else {
+        message.error("Server error. Please try again later.");
+        setLoading(false);
+      }
+
       setLoading(false);
+
       console.log(error);
     }
   };

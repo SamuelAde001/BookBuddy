@@ -32,7 +32,7 @@ router.post(
     check("surname").trim().notEmpty(),
     check("middleName").trim(),
     check("email").isEmail(),
-    check("password").isStrongPassword(),
+    check("password").notEmpty(),
   ],
   (req, res) => {
     // handle register user

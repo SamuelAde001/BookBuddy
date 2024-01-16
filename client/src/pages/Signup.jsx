@@ -22,7 +22,8 @@ export const Signup = () => {
 
   const validatePassword = () => {
     // Password should be at least 6 - 12 characters
-    const strongPasswordRegex = /^[a-zA-Z0-9_]{6,12}$/;
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}$/;
+
     return strongPasswordRegex.test(password);
   };
 
@@ -35,7 +36,9 @@ export const Signup = () => {
     }
     if (!validatePassword()) {
       console.error("Invalid password format");
-      message.error("put a different password");
+      message.error(
+        "Password should be at least 6 characters and include at least one uppercase letter, one lowercase letter, one number, but not greater than 20 characters long"
+      );
       return;
     }
 
