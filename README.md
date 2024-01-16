@@ -8,6 +8,7 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [images](#images)
 - [Technologies Used](#technologies-used)
 
 ## Features
@@ -32,6 +33,13 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 - Step 5: If a book sittings is completed, it automatically joins your finished book page
   -Step 6: You can add books you aim to read in future in the wishlist page
   -Step 6: Also you can edit you book details in case you made a mistake
+
+## Images
+
+![Home page](/client/public/screenshot.png)
+![Book Details](/client/public/screenshot%202.png)
+![Light mode](/client/public/screenshot%203.png)
+![Add Book](/client/public/screenshot%204.png)
 
 ## Technologies Used
 
