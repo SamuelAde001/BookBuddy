@@ -94,6 +94,7 @@ export const CreateNewWishedBookSider = () => {
     >
       <Form form={form} layout="vertical" requiredMark={false}>
         <Row>
+          {/* Book name */}
           <Col>
             <Form.Item
               name="bookName"
@@ -110,6 +111,7 @@ export const CreateNewWishedBookSider = () => {
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* image link */}
           <Col span={12}>
             <Form.Item name="imageLink" label="Book cover Image link">
               <Input
@@ -126,6 +128,7 @@ export const CreateNewWishedBookSider = () => {
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* author */}
           <Col span={12}>
             <Form.Item
               name="author"
@@ -140,6 +143,7 @@ export const CreateNewWishedBookSider = () => {
               <Input placeholder="Please enter Author of book" />
             </Form.Item>
           </Col>
+          {/* Genre */}
           <Col span={12}>
             <Form.Item
               name="genre"
@@ -156,6 +160,7 @@ export const CreateNewWishedBookSider = () => {
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* Description */}
           <Col span={24}>
             <Form.Item
               name="description"

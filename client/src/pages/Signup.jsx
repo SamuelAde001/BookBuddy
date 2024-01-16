@@ -102,16 +102,7 @@ export const Signup = () => {
           }}
         />
       </Form.Item>
-      <Form.Item
-        label="Middle Name"
-        name="Middle Name"
-        rules={[
-          {
-            required: true,
-            message: "Please input your middle name!",
-          },
-        ]}
-      >
+      <Form.Item label="Middle Name" name="Middle Name">
         <Input
           placeholder="Bola"
           onChange={(e) => {

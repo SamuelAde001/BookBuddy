@@ -1,4 +1,4 @@
-import { Button, Grid, Layout, theme } from "antd";
+import { Button, Grid, Layout, message, theme } from "antd";
 import React, { useState, useEffect } from "react";
 import { useLogout } from "../hooks/useLogout";
 import { Outlet } from "react-router-dom";
@@ -143,6 +143,7 @@ export const AppLayout = () => {
 
   return (
     <div className="lg:flex">
+      {/* sider Layout */}
       <Layout className="fixed z-20 left-0 top-0 lg:fixed  ">
         <Sider
           width={200}
@@ -165,6 +166,8 @@ export const AppLayout = () => {
           <NavBar data={data} />
         </Sider>
       </Layout>
+
+      {/* Header Layout */}
       <Layout className="w-full lg:ml-[200px] relative ">
         <Header className="bg-[url(https://images.pexels.com/photos/414551/pexels-photo-414551.jpeg)] bg-cover bg-no-repeat bg-center h-[40vh] flex flex-col-reverse lg:flex-row lg:justify-between lg:px-20 justify-center gap-5 px-10  items-center fixed top-0 right-0 lg:w-[90%] w-full  -z-0">
           {/* greetings to present user */}
@@ -178,6 +181,7 @@ export const AppLayout = () => {
             type="primary"
             onClick={() => {
               logout();
+              message.success("Logged out successful");
             }}
             className="absolute top-3 lg:right-0  lg:top-0 right-3 lg:relative"
             icon={<CiLogout />}
@@ -185,12 +189,16 @@ export const AppLayout = () => {
             Logout
           </Button>
         </Header>
+
+        {/* Main content */}
         <Content
           style={{ backgroundColor: token.colorBgLayout }}
           className="mt-[30vh] min-h-[70vh] w-[90%] z-10 mx-auto rounded-lg shadow-md"
         >
           <Outlet context={[data]} />
         </Content>
+
+        {/* menu open Button */}
         <Button
           onClick={() => {
             dispatch(triggerMenu());
@@ -201,6 +209,7 @@ export const AppLayout = () => {
           <IoMdMenu />
         </Button>
 
+        {/* unseen components */}
         <CreateNewBookSideBar />
         <BookDetailsModal />
       </Layout>

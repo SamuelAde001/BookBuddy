@@ -50,6 +50,7 @@ export const AppHome = () => {
           Currently reading Books
         </h2>
 
+        {/* cards */}
         <div className="flex gap-10 items-center my-10 justify-center lg:justify-start lg:px-10 flex-wrap">
           {loading ? (
             <Spin size="large" />
@@ -183,6 +184,7 @@ export const AppHome = () => {
         </div>
       </section>
 
+      {/* wishlist */}
       <section
         style={{
           backgroundColor: token.colorBgContainer,
@@ -250,6 +252,8 @@ export const AppHome = () => {
           )}
         </div>
       </section>
+
+      {/* unseen components */}
       <CreateNewWishedBookSider />
     </div>
   );

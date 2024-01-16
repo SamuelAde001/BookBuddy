@@ -7,7 +7,7 @@ export const LoginLayout = () => {
   const { token } = theme.useToken();
 
   return (
-    <div className="bg-[url(https://images.pexels.com/photos/574283/pexels-photo-574283.jpeg)] h-screen bg-cover bg-no-repeat flex justify-center items-center ">
+    <div className="bg-[url(https://images.pexels.com/photos/574283/pexels-photo-574283.jpeg)] h-screen bg-cover bg-no-repeat flex justify-center items-center relative ">
       <Form
         name="basic"
         labelCol={{
@@ -38,10 +38,12 @@ export const LoginLayout = () => {
         >
           <Outlet />
         </ConfigProvider>
-        <Button type="text">
-          <Link to="/">Start Page</Link>
-        </Button>
       </Form>
+
+      {/* Home page button */}
+      <Button type="primary" className="absolute top-5 left-5">
+        <Link to="/">Start Page</Link>
+      </Button>
     </div>
   );
 };

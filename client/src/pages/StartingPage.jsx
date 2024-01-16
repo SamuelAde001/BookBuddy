@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Layout, Menu, Drawer, Button, theme } from "antd";
+import { Layout, Menu, Drawer, Button, theme, message } from "antd";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll"; // Import the ScrollLink and scroll functions
 import { LightandDarkModeTrigger } from "../components/LightandDarkModeTrigger";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { TiThMenu } from "react-icons/ti";
+import { useLogout } from "../hooks/useLogout";
 
 const { Header, Content } = Layout;
 
 export const StartingPage = () => {
+  const { logout } = useLogout();
   const { token } = theme.useToken();
-
+  const { user } = useAuthContext();
   const [drawerVisible, setDrawerVisible] = useState(false);
 
   const toggleDrawer = () => {
@@ -80,12 +83,19 @@ export const StartingPage = () => {
       ],
     },
     {
-      key: "login",
+      key: () => {
+        user ? "Logout" : "Login";
+      },
+      onClick: () => {
+        user && logout();
+        user && message.success("Logged out successful");
+      },
       style: {
         backgroundColor: token.colorPrimary,
         color: "#e6e6e6",
       },
-      label: <Link to="/login"> Login</Link>,
+
+      label: user ? "Logout" : <Link to="/login"> Login</Link>,
     },
   ];
 
@@ -190,13 +200,19 @@ export const StartingPage = () => {
       ],
     },
     {
-      key: "login",
-      onClick: toggleDrawer,
+      key: () => {
+        user ? "Logout" : "Login";
+      },
+      onClick: () => {
+        user && logout();
+        message.success("Logged out successful");
+      },
       style: {
         backgroundColor: token.colorPrimary,
         color: "#e6e6e6",
       },
-      label: <Link to="/login"> Login</Link>,
+
+      label: user ? "Logout" : <Link to="/login"> Login</Link>,
     },
   ];
 

@@ -8,10 +8,11 @@ import {
   Form,
   Input,
   InputNumber,
-  Popover,
+  Grid,
   Row,
   Space,
   message,
+  Select,
 } from "antd";
 import { toggleSideBar, triggerReload } from "../features/createNewBookSlice";
 import axios from "axios";
@@ -26,6 +27,10 @@ export const CreateNewBookSideBar = () => {
   );
   const dispatch = useDispatch();
   const { user } = useAuthContext();
+
+  // Ant design break points
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
 
   const onClose = () => {
     dispatch(toggleSideBar());
@@ -92,15 +97,24 @@ export const CreateNewBookSideBar = () => {
     <Drawer
       title="Create a new book to be tracked"
       onClose={onClose}
+      width={() => {
+        if (screens.lg && screens.xl) {
+          return "20vw";
+        } else "90vw";
+      }}
       open={sideBarState}
       styles={{ paddingBottom: 80 }}
       extra={
         <Space>
           <Button onClick={onClose}>Cancel</Button>
+        </Space>
+      }
+      footer={
+        <div className="flex justify-end">
           <Button onClick={handleSubmit} type="primary" loading={loading}>
             Submit
           </Button>
-        </Space>
+        </div>
       }
     >
       <Form
@@ -113,6 +127,7 @@ export const CreateNewBookSideBar = () => {
         }}
       >
         <Row>
+          {/* Book name */}
           <Col>
             <Form.Item
               name="bookName"
@@ -129,6 +144,7 @@ export const CreateNewBookSideBar = () => {
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* Image Link */}
           <Col span={12}>
             <Form.Item name="imageLink" label="Book cover Image link">
               <Input
@@ -138,13 +154,14 @@ export const CreateNewBookSideBar = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <p className="text-xs">
+            <p className="text-left text-xs lg:text-base">
               You can copy a link to the book image anywhere online and paste
               that link here to have your book cover
             </p>
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* Author */}
           <Col span={12}>
             <Form.Item
               name="author"
@@ -159,6 +176,7 @@ export const CreateNewBookSideBar = () => {
               <Input placeholder="Please enter Author of book" />
             </Form.Item>
           </Col>
+          {/* Genre */}
           <Col span={12}>
             <Form.Item
               name="genre"
@@ -170,11 +188,52 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter the Genre" />
+              <Select
+                placeholder="Choose Genre"
+                options={[
+                  {
+                    value: "Religion",
+                    label: "Religion",
+                  },
+                  {
+                    value: "Motivational",
+                    label: "Motivational",
+                  },
+                  {
+                    value: "Action and Adventure",
+                    label: "Action and Adventure",
+                  },
+                  {
+                    value: "Mystery",
+                    label: "Mystery",
+                  },
+                  {
+                    value: "Fantasy",
+                    label: "Fantasy",
+                  },
+                  {
+                    value: "Fiction",
+                    label: "Fiction",
+                  },
+                  {
+                    value: "Education",
+                    label: "Education",
+                  },
+                  {
+                    value: "History",
+                    label: "History",
+                  },
+                  {
+                    value: "Others",
+                    label: "Others",
+                  },
+                ]}
+              />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={16}>
+          {/* Pages */}
           <Col span={8}>
             <Form.Item
               name="bookPages"
@@ -190,6 +249,7 @@ export const CreateNewBookSideBar = () => {
             </Form.Item>
           </Col>
           <Col span={8}>
+            {/* Deadline */}
             <Form.Item
               name="deadline"
               label="Deadline"
@@ -203,31 +263,27 @@ export const CreateNewBookSideBar = () => {
             >
               <DatePicker format="YYYY-MM-DD" />
             </Form.Item>
+            {/* sittings */}
           </Col>
-          <Popover
-            placement="top"
-            content={
-              <span>Read the text down bellow to understand sittings</span>
-            }
-          >
-            <Col span={8}>
-              <Form.Item
-                name="sittingsNumber"
-                label="Sittings"
-                rules={[
-                  {
-                    required: true,
-                    message:
-                      "Please how many sittings you want to read the book with",
-                  },
-                ]}
-              >
-                <InputNumber min={1} />
-              </Form.Item>
-            </Col>
-          </Popover>
+
+          <Col span={8}>
+            <Form.Item
+              name="sittingsNumber"
+              label="Sittings"
+              rules={[
+                {
+                  required: true,
+                  message:
+                    "Please how many sittings you want to read the book with",
+                },
+              ]}
+            >
+              <InputNumber min={1} />
+            </Form.Item>
+          </Col>
         </Row>
         <Row gutter={16}>
+          {/* description */}
           <Col span={24}>
             <Form.Item
               name="description"

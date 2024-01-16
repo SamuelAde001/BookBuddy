@@ -209,28 +209,32 @@ export const BookDetailsModal = () => {
           className="top-5"
           classNames={classNames}
           styles={modalStyles}
-          footer={[
-            <Button key="Cancel" onClick={() => handleCancel()}>
-              Cancel
-            </Button>,
-            <Button
-              key="delete"
-              onClick={() => handleDelete()}
-              icon={<MdDelete />}
-            />,
-
-            <Button key="update" onClick={() => handleUpdate()}>
-              Update Book
-            </Button>,
-            <Button
-              key="submit"
-              disabled={!bookDetails?.deadline ? true : false}
-              type="primary"
-              onClick={() => handleSubmit()}
-            >
-              Sumbit
-            </Button>,
-          ]}
+          footer={
+            <div className="flex justify-between">
+              <Button
+                key="delete"
+                onClick={() => handleDelete()}
+                className="text-red-500 hover:text-red-400"
+                icon={<MdDelete />}
+              />
+              <div className="space-x-3">
+                <Button key="Cancel" onClick={() => handleCancel()}>
+                  Cancel
+                </Button>
+                <Button key="update" onClick={() => handleUpdate()}>
+                  Edit book
+                </Button>
+                <Button
+                  key="submit"
+                  disabled={!bookDetails?.deadline ? true : false}
+                  type="primary"
+                  onClick={() => handleSubmit()}
+                >
+                  Update sitting
+                </Button>
+              </div>
+            </div>
+          }
         >
           {/* image */}
           <div className="w-[20%]  mx-auto">
