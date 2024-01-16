@@ -7,9 +7,9 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
 - [images](#images)
 - [Technologies Used](#technologies-used)
+- [Contact](#contact)
 
 ## Features
 
@@ -22,7 +22,7 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 
 ## Getting Started
 
-- To get startted with the Web app just go to www.(hostedLink)
+- To get startted with the Web app just go to https://book-buddy-swart.vercel.app/
 
 ##Usage
 
@@ -36,9 +36,20 @@ BookBuddy is a user-friendly web app designed to enhance your reading experience
 
 ## Images
 
+### Home page
+
 ![Home page](/client/public/screenshot.png)
+
+### Book Details
+
 ![Book Details](/client/public/screenshot%202.png)
+
+### Light mode
+
 ![Light mode](/client/public/screenshot%203.png)
+
+### Add Book
+
 ![Add Book](/client/public/screenshot%204.png)
 
 ## Technologies Used
