@@ -140,7 +140,7 @@ export const Signup = () => {
         <Input
           placeholder="Example@email.com"
           onChange={(e) => {
-            setEmail(e.target.value.trim());
+            setEmail(e.target.value.trim().toLowerCase());
           }}
         />
       </Form.Item>

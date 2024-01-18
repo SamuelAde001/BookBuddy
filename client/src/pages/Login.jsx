@@ -94,7 +94,7 @@ export const Login = () => {
         <Input
           placeholder="Type Email Here"
           onChange={(e) => {
-            setEmail(e.target.value.trim().toLocaleLowerCase());
+            setEmail(e.target.value.trim().toLowerCase());
           }}
         />
       </Form.Item>
