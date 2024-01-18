@@ -120,7 +120,16 @@ export const CreateNewWishedBookSider = () => {
         <Row gutter={16}>
           {/* image link */}
           <Col span={12}>
-            <Form.Item name="imageLink" label="Book cover Image link">
+            <Form.Item
+              name="imageLink"
+              label="Book cover Image link"
+              rules={[
+                {
+                  type: "url",
+                  message: "Must be a link to an Image",
+                },
+              ]}
+            >
               <Input
                 style={{ width: "100%" }}
                 placeholder="Please enter link to image of book cover"

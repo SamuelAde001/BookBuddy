@@ -99,11 +99,28 @@ export const WishedBookUpdateModal = ({ bookDetails }) => {
         <Form form={form} layout="vertical" requiredMark={false}>
           <Row gutter={16}>
             <Col span={8}>
-              <Form.Item name="bookPages" label="Book Pages">
+              <Form.Item
+                name="bookPages"
+                label="Book Pages"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the pages of the book",
+                  },
+                  {
+                    type: "number",
+                    message: "Pages must be a number",
+                  },
+                ]}
+              >
                 <InputNumber
                   onBlur={(e) => {
                     const trimmedValue = e.target.value.trim();
-                    form.setFieldsValue({ bookPages: trimmedValue });
+                    const parsedValue = parseFloat(trimmedValue);
+
+                    if (!isNaN(parsedValue)) {
+                      form.setFieldsValue({ bookPages: parsedValue });
+                    }
                   }}
                   min={1}
                 />
@@ -116,11 +133,29 @@ export const WishedBookUpdateModal = ({ bookDetails }) => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item name="sittingsNumber" label="Sittings">
+              <Form.Item
+                name="sittingsNumber"
+                label="Sittings"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Please how many sittings you want to read the book with and must be a number",
+                  },
+                  {
+                    type: "number",
+                    message: "Sittings must be a number",
+                  },
+                ]}
+              >
                 <InputNumber
                   onBlur={(e) => {
                     const trimmedValue = e.target.value.trim();
-                    form.setFieldsValue({ sittingsNumber: trimmedValue });
+                    const parsedValue = parseFloat(trimmedValue);
+
+                    if (!isNaN(parsedValue)) {
+                      form.setFieldsValue({ sittingsNumber: parsedValue });
+                    }
                   }}
                   min={1}
                 />

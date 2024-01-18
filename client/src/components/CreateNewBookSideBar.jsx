@@ -152,7 +152,16 @@ export const CreateNewBookSideBar = () => {
         <Row gutter={16}>
           {/* Image Link */}
           <Col span={12}>
-            <Form.Item name="imageLink" label="Book cover Image link">
+            <Form.Item
+              name="imageLink"
+              label="Book cover Image link"
+              rules={[
+                {
+                  type: "url",
+                  message: "Must be a link to an Image",
+                },
+              ]}
+            >
               <Input
                 style={{ width: "100%" }}
                 onBlur={(e) => {
@@ -259,12 +268,20 @@ export const CreateNewBookSideBar = () => {
                   required: true,
                   message: "Please input the pages of the book",
                 },
+                {
+                  type: "number",
+                  message: "Pages must be a number",
+                },
               ]}
             >
               <InputNumber
                 onBlur={(e) => {
                   const trimmedValue = e.target.value.trim();
-                  form.setFieldsValue({ bookPages: trimmedValue });
+                  const parsedValue = parseFloat(trimmedValue);
+
+                  if (!isNaN(parsedValue)) {
+                    form.setFieldsValue({ bookPages: parsedValue });
+                  }
                 }}
                 min={1}
               />
@@ -285,9 +302,9 @@ export const CreateNewBookSideBar = () => {
             >
               <DatePicker format="YYYY-MM-DD" />
             </Form.Item>
-            {/* sittings */}
           </Col>
 
+          {/* sittings */}
           <Col span={8}>
             <Form.Item
               name="sittingsNumber"
@@ -296,14 +313,22 @@ export const CreateNewBookSideBar = () => {
                 {
                   required: true,
                   message:
-                    "Please how many sittings you want to read the book with",
+                    "Please how many sittings you want to read the book with and must be a number",
+                },
+                {
+                  type: "number",
+                  message: "Sittings must be a number",
                 },
               ]}
             >
               <InputNumber
                 onBlur={(e) => {
                   const trimmedValue = e.target.value.trim();
-                  form.setFieldsValue({ sittingsNumber: trimmedValue });
+                  const parsedValue = parseFloat(trimmedValue);
+
+                  if (!isNaN(parsedValue)) {
+                    form.setFieldsValue({ sittingsNumber: parsedValue });
+                  }
                 }}
                 min={1}
               />
