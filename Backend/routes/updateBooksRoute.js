@@ -17,11 +17,13 @@ router.put("/:id", async (req, res) => {
   }));
 
   const details = req.body;
+  const user_id = req.user._id;
+
   try {
     console.log(req.body);
     // Find the book by ID and update its details
-    const updatedBook = await books.findOneAndUpdate(
-      { _id: bookId },
+    const updatedBook = await books.findByIdAndUpdate(
+      { _id: bookId, user_id: user_id },
       { ...details, sittings: sittings ? sittings : sittingsArray },
       { new: true }
     );

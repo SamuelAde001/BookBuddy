@@ -94,7 +94,7 @@ export const Login = () => {
         <Input
           placeholder="Type Email Here"
           onChange={(e) => {
-            setEmail(e.target.value);
+            setEmail(e.target.value.trim().toLocaleLowerCase());
           }}
         />
       </Form.Item>
@@ -111,7 +111,7 @@ export const Login = () => {
         <Input.Password
           placeholder="Type Password Here"
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value.trim());
           }}
         />
       </Form.Item>

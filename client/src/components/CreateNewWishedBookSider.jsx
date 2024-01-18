@@ -7,6 +7,7 @@ import {
   Input,
   Popover,
   Row,
+  Select,
   Space,
   message,
 } from "antd";
@@ -106,7 +107,13 @@ export const CreateNewWishedBookSider = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter Book name" />
+              <Input
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ bookName: trimmedValue });
+                }}
+                placeholder="Please enter Book name"
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -140,7 +147,13 @@ export const CreateNewWishedBookSider = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter Author of book" />
+              <Input
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ author: trimmedValue });
+                }}
+                placeholder="Please enter Author of book"
+              />
             </Form.Item>
           </Col>
           {/* Genre */}
@@ -155,7 +168,47 @@ export const CreateNewWishedBookSider = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter the Genre" />
+              <Select
+                placeholder="Choose Genre"
+                options={[
+                  {
+                    value: "Religion",
+                    label: "Religion",
+                  },
+                  {
+                    value: "Motivational",
+                    label: "Motivational",
+                  },
+                  {
+                    value: "Action and Adventure",
+                    label: "Action and Adventure",
+                  },
+                  {
+                    value: "Mystery",
+                    label: "Mystery",
+                  },
+                  {
+                    value: "Fantasy",
+                    label: "Fantasy",
+                  },
+                  {
+                    value: "Fiction",
+                    label: "Fiction",
+                  },
+                  {
+                    value: "Education",
+                    label: "Education",
+                  },
+                  {
+                    value: "History",
+                    label: "History",
+                  },
+                  {
+                    value: "Others",
+                    label: "Others",
+                  },
+                ]}
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -172,6 +225,10 @@ export const CreateNewWishedBookSider = () => {
               ]}
             >
               <Input.TextArea
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ description: trimmedValue });
+                }}
                 rows={4}
                 placeholder="You can enter Description of the book here"
               />

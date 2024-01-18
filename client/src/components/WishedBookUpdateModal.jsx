@@ -100,7 +100,13 @@ export const WishedBookUpdateModal = ({ bookDetails }) => {
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item name="bookPages" label="Book Pages">
-                <InputNumber min={1} />
+                <InputNumber
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ bookPages: trimmedValue });
+                  }}
+                  min={1}
+                />
               </Form.Item>
             </Col>
 
@@ -111,7 +117,13 @@ export const WishedBookUpdateModal = ({ bookDetails }) => {
             </Col>
             <Col span={8}>
               <Form.Item name="sittingsNumber" label="Sittings">
-                <InputNumber min={1} />
+                <InputNumber
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ sittingsNumber: trimmedValue });
+                  }}
+                  min={1}
+                />
               </Form.Item>
             </Col>
           </Row>

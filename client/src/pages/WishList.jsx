@@ -39,7 +39,7 @@ export const WishList = () => {
           Wish List
         </h2>
 
-        {wishedBooks.length !== 0 && (
+        {wishedBooks?.length !== 0 && (
           <div
             className="flex justify-center
           pt-5"

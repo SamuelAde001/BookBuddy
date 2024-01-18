@@ -98,7 +98,7 @@ export const Signup = () => {
         <Input
           placeholder="Bello"
           onChange={(e) => {
-            setFirstName(e.target.value);
+            setFirstName(e.target.value.trim());
           }}
         />
       </Form.Item>
@@ -106,7 +106,7 @@ export const Signup = () => {
         <Input
           placeholder="Bola"
           onChange={(e) => {
-            setMiddleName(e.target.value);
+            setMiddleName(e.target.value.trim());
           }}
         />
       </Form.Item>
@@ -123,7 +123,7 @@ export const Signup = () => {
         <Input
           placeholder="Joseph"
           onChange={(e) => {
-            setSurname(e.target.value);
+            setSurname(e.target.value.trim());
           }}
         />
       </Form.Item>
@@ -140,7 +140,7 @@ export const Signup = () => {
         <Input
           placeholder="Example@email.com"
           onChange={(e) => {
-            setEmail(e.target.value);
+            setEmail(e.target.value.trim());
           }}
         />
       </Form.Item>
@@ -157,7 +157,7 @@ export const Signup = () => {
         <Input.Password
           placeholder="Strong Password"
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value.trim());
           }}
         />
       </Form.Item>

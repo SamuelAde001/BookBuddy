@@ -139,7 +139,13 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter Book name" />
+              <Input
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ bookName: trimmedValue });
+                }}
+                placeholder="Please enter Book name"
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -149,6 +155,10 @@ export const CreateNewBookSideBar = () => {
             <Form.Item name="imageLink" label="Book cover Image link">
               <Input
                 style={{ width: "100%" }}
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ imageLink: trimmedValue });
+                }}
                 placeholder="Please enter link to image of book cover"
               />
             </Form.Item>
@@ -173,7 +183,13 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <Input placeholder="Please enter Author of book" />
+              <Input
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ author: trimmedValue });
+                }}
+                placeholder="Please enter Author of book"
+              />
             </Form.Item>
           </Col>
           {/* Genre */}
@@ -245,7 +261,13 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <InputNumber min={1} />
+              <InputNumber
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ bookPages: trimmedValue });
+                }}
+                min={1}
+              />
             </Form.Item>
           </Col>
           <Col span={8}>
@@ -278,7 +300,13 @@ export const CreateNewBookSideBar = () => {
                 },
               ]}
             >
-              <InputNumber min={1} />
+              <InputNumber
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ sittingsNumber: trimmedValue });
+                }}
+                min={1}
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -297,6 +325,10 @@ export const CreateNewBookSideBar = () => {
               <Input.TextArea
                 rows={4}
                 placeholder="You can enter Description of the book here"
+                onBlur={(e) => {
+                  const trimmedValue = e.target.value.trim();
+                  form.setFieldsValue({ description: trimmedValue });
+                }}
               />
             </Form.Item>
           </Col>

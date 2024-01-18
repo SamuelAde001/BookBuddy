@@ -6,11 +6,12 @@ const router = express.Router();
 // update Book details
 router.put("/:id", async (req, res) => {
   const bookId = req.params.id;
+  const user_id = req.user._id;
 
   try {
     // Find the book by ID and update its details
-    const updatedBook = await books.findOneAndUpdate(
-      { _id: bookId },
+    const updatedBook = await books.findByIdAndUpdate(
+      { _id: bookId, user_id: user_id },
       { $set: req.body },
       { new: true }
     );

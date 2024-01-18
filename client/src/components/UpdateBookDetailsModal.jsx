@@ -10,6 +10,7 @@ import {
   Spin,
   message,
   Popover,
+  Select,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -128,8 +129,23 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
         >
           <Row>
             <Col>
-              <Form.Item name="bookName" label="Book name">
-                <Input placeholder="Please enter Book name" />
+              <Form.Item
+                name="bookName"
+                label="Book name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter user Book name",
+                  },
+                ]}
+              >
+                <Input
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ bookName: trimmedValue });
+                  }}
+                  placeholder="Please enter Book name"
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -138,6 +154,10 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
               <Form.Item name="imageLink" label="Book cover Image link">
                 <Input
                   style={{ width: "100%" }}
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ imageLink: trimmedValue });
+                  }}
                   placeholder="Please enter link to image of book cover"
                 />
               </Form.Item>
@@ -151,32 +171,135 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
           </Row>
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="author" label="Author">
-                <Input placeholder="Please enter Author of book" />
+              <Form.Item
+                name="author"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter user Author name",
+                  },
+                ]}
+                label="Author"
+              >
+                <Input
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ author: trimmedValue });
+                  }}
+                  placeholder="Please enter Author of book"
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="genre" label="Genre">
-                <Input placeholder="Please enter the Genre" />
+              <Form.Item
+                name="genre"
+                label="Genre"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the Books Genre",
+                  },
+                ]}
+              >
+                <Select
+                  placeholder="Choose Genre"
+                  options={[
+                    {
+                      value: "Religion",
+                      label: "Religion",
+                    },
+                    {
+                      value: "Motivational",
+                      label: "Motivational",
+                    },
+                    {
+                      value: "Action and Adventure",
+                      label: "Action and Adventure",
+                    },
+                    {
+                      value: "Mystery",
+                      label: "Mystery",
+                    },
+                    {
+                      value: "Fantasy",
+                      label: "Fantasy",
+                    },
+                    {
+                      value: "Fiction",
+                      label: "Fiction",
+                    },
+                    {
+                      value: "Education",
+                      label: "Education",
+                    },
+                    {
+                      value: "History",
+                      label: "History",
+                    },
+                    {
+                      value: "Others",
+                      label: "Others",
+                    },
+                  ]}
+                />
               </Form.Item>
             </Col>
           </Row>
           {bookDetails.deadline && (
             <Row gutter={16}>
               <Col span={8}>
-                <Form.Item name="bookPages" label="Book Pages">
-                  <InputNumber min={1} />
+                <Form.Item
+                  name="bookPages"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter pages",
+                    },
+                  ]}
+                  label="Book Pages"
+                >
+                  <InputNumber
+                    onBlur={(e) => {
+                      const trimmedValue = e.target.value.trim();
+                      form.setFieldsValue({ bookPages: trimmedValue });
+                    }}
+                    min={1}
+                  />
                 </Form.Item>
               </Col>
 
               <Col span={8}>
-                <Form.Item name="deadline" label="Deadline">
+                <Form.Item
+                  name="deadline"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter book deadline",
+                    },
+                  ]}
+                  label="Deadline"
+                >
                   <DatePicker format="YYYY-MM-DD" />
                 </Form.Item>
               </Col>
               <Col span={8}>
-                <Form.Item name="sittingsNumber" label="Sittings">
-                  <InputNumber min={1} />
+                <Form.Item
+                  name="sittingsNumber"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter number of sittings",
+                    },
+                  ]}
+                  label="Sittings"
+                >
+                  <InputNumber
+                    onBlur={(e) => {
+                      const trimmedValue = e.target.value.trim();
+                      form.setFieldsValue({ sittingsNumber: trimmedValue });
+                    }}
+                    min={1}
+                  />
                 </Form.Item>
               </Col>
             </Row>
@@ -185,6 +308,10 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
             <Col span={24}>
               <Form.Item name="description" label="Description">
                 <Input.TextArea
+                  onBlur={(e) => {
+                    const trimmedValue = e.target.value.trim();
+                    form.setFieldsValue({ description: trimmedValue });
+                  }}
                   rows={4}
                   placeholder="You can enter Description of the book here"
                 />
