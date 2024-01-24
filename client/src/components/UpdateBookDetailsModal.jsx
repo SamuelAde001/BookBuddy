@@ -325,6 +325,7 @@ export const UpdateBookDetailsModal = ({ bookDetails }) => {
                       }
                     }}
                     min={1}
+                    max={30}
                   />
                 </Form.Item>
               </Col>

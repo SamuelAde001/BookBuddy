@@ -158,6 +158,7 @@ export const WishedBookUpdateModal = ({ bookDetails }) => {
                     }
                   }}
                   min={1}
+                  max={30}
                 />
               </Form.Item>
             </Col>
