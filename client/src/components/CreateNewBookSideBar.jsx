@@ -331,7 +331,7 @@ export const CreateNewBookSideBar = () => {
                   }
                 }}
                 min={1}
-                max={30}
+                max={29}
               />
             </Form.Item>
           </Col>
